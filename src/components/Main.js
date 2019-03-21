@@ -12,14 +12,24 @@ class Main extends Component {
     this.setState({ total });
   }
 
+  handleNumPeopleChange(event) {
+    const numPeople = event.target.value.replace(/\D/g, '')
+    this.setState({ numPeople });
+  }
+
   render() {
     return (
       <div>
         <h1>Bill splitter</h1>
         <NumberInput
-          label="Totalx amount"
+          label="Total amount"
           value={this.state.total}
           onChange={this.handleTotalChange.bind(this)}
+        />
+        <NumberInput
+          label="Number of payers"
+          value={this.state.numPeople}
+          onChange={this.handleNumPeopleChange.bind(this)}
         />
       </div>
     );
