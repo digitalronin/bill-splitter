@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NumberInput from './NumberInput';
 
 class Main extends Component {
   state = {
@@ -15,13 +16,11 @@ class Main extends Component {
     return (
       <div>
         <h1>Bill splitter</h1>
-        <div>
-          <label>Total amount</label>
-          <input
-            value={this.state.total}
-            onChange={(event) => this.handleTotalChange(event)}
-          />
-        </div>
+        <NumberInput
+          label="Totalx amount"
+          value={this.state.total}
+          onChange={this.handleTotalChange.bind(this)}
+        />
       </div>
     );
   }
