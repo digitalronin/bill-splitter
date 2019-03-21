@@ -26,22 +26,27 @@ class Main extends Component {
     if (tot && people) {
       const contribution = tot / people;
       let contributions = {};
-      Array(people).fill().map((_, i) => contributions[i] = contribution)
+      Array(people).fill().map((_, i) => contributions[i] = {amount: contribution, fixed: false})
       this.setState({ contributions });
     }
+  }
+
+  fixContribution(event, index) {
+    const obj = { [index]: { amount: event.target.value, fixed: true }};
+    this.setState({ contributions: {...this.state.contributions, ...obj}});
   }
 
   payers() {
     const numPeople = parseInt(this.state.numPeople);
     if (numPeople) {
-      console.log(this.state.contributions);
       return Object.keys(this.state.contributions).map((key, i) => {
-        const val = this.state.contributions[key];
+        const val = this.state.contributions[key].amount;
         const value = isNaN(val) ? '' : val;
         return <NumberInput
+          key={key}
           label={`Payer ${i+1}`}
           value={value}
-          key={key}
+          onChange={(event) => this.fixContribution(event, key)}
         />
       });
     } else {
