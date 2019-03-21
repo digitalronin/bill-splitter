@@ -5,7 +5,7 @@ class Main extends Component {
   state = {
     total: '',
     numPeople: 1,
-    contributions: {}
+    contributions: { 0: {amount: 0, fixed: false}}
   }
 
   handleTotalChange(event) {
@@ -16,32 +16,62 @@ class Main extends Component {
 
   handleNumPeopleChange(event) {
     const numPeople = event.target.value.replace(/\D/g, '');
-    this.calculateContributions(this.state.total, numPeople);
-    this.setState({ numPeople });
+    this.setDefaultContributions(numPeople);
   }
 
-  calculateContributions(total, numPeople) {
+  setDefaultContributions(people) {
+    const total = parseFloat(this.state.total) || 0;
+    const numPeople = parseInt(people);
+
+    if (numPeople) {
+      const contribution = total / numPeople;
+      const contributions = {};
+      let i;
+      for (i in Array(numPeople).fill()) {
+        contributions[i] = { amount: contribution, fixed: false };
+      }
+
+      this.setState({ total, numPeople, contributions });
+    } else {
+      this.setState({ numPeople: people });
+    }
+  }
+
+  calculateContributions(total, numPeople, contributions = {...this.state.contributions}) {
     const tot = parseFloat(total);
     const people = parseInt(numPeople);
+
     if (tot && people) {
-      const contribution = tot / people;
-      let contributions = {};
-      Array(people).fill().map((_, i) => contributions[i] = {amount: contribution, fixed: false})
-      this.setState({ contributions });
+      let fixedTotal = 0;
+      let unfixedCount = people;
+      for(let v of Object.values(contributions)) {
+        if (v.fixed) {
+          fixedTotal += parseFloat(v.amount) || 0;
+          unfixedCount -= 1;
+        }
+      }
+
+      const contribution = (tot - fixedTotal) / unfixedCount;
+      let contrs = {...contributions};
+      for (let i in Array(people).fill()) {
+        contrs[i] = (contrs[i] && contrs[i].fixed) ? contrs[i] : { amount: contribution, fixed: false };
+      }
+
+      this.setState({ contributions: contrs });
     }
   }
 
   fixContribution(event, index) {
     const obj = { [index]: { amount: event.target.value, fixed: true }};
-    this.setState({ contributions: {...this.state.contributions, ...obj}});
+    const contributions = {...this.state.contributions, ...obj};
+    this.calculateContributions(this.state.total, this.state.numPeople, contributions);
   }
 
   payers() {
     const numPeople = parseInt(this.state.numPeople);
     if (numPeople) {
       return Object.keys(this.state.contributions).map((key, i) => {
-        const val = this.state.contributions[key].amount;
-        const value = isNaN(val) ? '' : val;
+        const value = this.state.contributions[key].amount;
         return <NumberInput
           key={key}
           label={`Payer ${i+1}`}
