@@ -96,11 +96,13 @@ class Main extends Component {
             label="Total amount"
             value={this.state.total}
             onChange={this.handleTotalChange.bind(this)}
+            variant="outlined"
           />
           <NumberInput
             label="Number of payers"
             value={this.state.numPeople}
             onChange={this.handleNumPeopleChange.bind(this)}
+            variant="outlined"
           />
         </div>
         {this.payers()}
