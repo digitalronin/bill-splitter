@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NumberInput from './NumberInput';
+import Typography from '@material-ui/core/Typography';
 
 class Main extends Component {
   state = {
@@ -87,7 +88,7 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <h1>Bill splitter</h1>
+        <Typography component="h2" variant="h2">Bill splitter</Typography>
         <NumberInput
           label="Total amount"
           value={this.state.total}
