@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import NumberInput from './NumberInput';
+import Typography from '@material-ui/core/Typography';
 
 class Main extends Component {
   state = {
     total: '',
-    numPeople: 1,
+    numPeople: '',
     contributions: { 0: {amount: 0, fixed: false}}
   }
 
@@ -70,15 +71,22 @@ class Main extends Component {
   payers() {
     const numPeople = parseInt(this.state.numPeople);
     if (numPeople) {
-      return Object.keys(this.state.contributions).map((key, i) => {
+      const text = (
+        <Typography variant="subtitle1" gutterBottom>
+          Override the value for anyone who should pay a different amount.
+        </Typography>
+      );
+      return [text].concat(Object.keys(this.state.contributions).map((key, i) => {
         const value = this.state.contributions[key].amount;
-        return <NumberInput
-          key={key}
-          label={`Payer ${i+1}`}
-          value={value}
-          onChange={(event) => this.fixContribution(event, key)}
-        />
-      });
+        return (
+          <NumberInput
+            key={key}
+            label={`Payer ${i+1}`}
+            value={value}
+            onChange={(event) => this.fixContribution(event, key)}
+          />
+        );
+      }));
     } else {
       return null
     }
@@ -87,17 +95,21 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <h1>Bill splitter</h1>
-        <NumberInput
-          label="Total amount"
-          value={this.state.total}
-          onChange={this.handleTotalChange.bind(this)}
-        />
-        <NumberInput
-          label="Number of payers"
-          value={this.state.numPeople}
-          onChange={this.handleNumPeopleChange.bind(this)}
-        />
+        <Typography component="h2" variant="h2" gutterBottom>Bill splitter</Typography>
+        <div className="headerFields">
+          <NumberInput
+            label="Total amount"
+            value={this.state.total}
+            onChange={this.handleTotalChange.bind(this)}
+            variant="outlined"
+          />
+          <NumberInput
+            label="Number of payers"
+            value={this.state.numPeople}
+            onChange={this.handleNumPeopleChange.bind(this)}
+            variant="outlined"
+          />
+        </div>
         {this.payers()}
       </div>
     );
