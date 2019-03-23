@@ -71,7 +71,12 @@ class Main extends Component {
   payers() {
     const numPeople = parseInt(this.state.numPeople);
     if (numPeople) {
-      return Object.keys(this.state.contributions).map((key, i) => {
+      const text = (
+        <Typography variant="subtitle1" gutterBottom>
+          Override the value for anyone who should pay a different amount.
+        </Typography>
+      );
+      return [text].concat(Object.keys(this.state.contributions).map((key, i) => {
         const value = this.state.contributions[key].amount;
         return (
           <NumberInput
@@ -81,7 +86,7 @@ class Main extends Component {
             onChange={(event) => this.fixContribution(event, key)}
           />
         );
-      });
+      }));
     } else {
       return null
     }
