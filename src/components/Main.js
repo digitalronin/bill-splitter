@@ -73,12 +73,16 @@ class Main extends Component {
     if (numPeople) {
       return Object.keys(this.state.contributions).map((key, i) => {
         const value = this.state.contributions[key].amount;
-        return <NumberInput
-          key={key}
-          label={`Payer ${i+1}`}
-          value={value}
-          onChange={(event) => this.fixContribution(event, key)}
-        />
+        return (
+          <div className="payerInputs">
+            <NumberInput
+              key={key}
+              label={`Payer ${i+1}`}
+              value={value}
+              onChange={(event) => this.fixContribution(event, key)}
+            />
+          </div>
+        );
       });
     } else {
       return null
@@ -88,17 +92,19 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <Typography component="h2" variant="h2">Bill splitter</Typography>
-        <NumberInput
-          label="Total amount"
-          value={this.state.total}
-          onChange={this.handleTotalChange.bind(this)}
-        />
-        <NumberInput
-          label="Number of payers"
-          value={this.state.numPeople}
-          onChange={this.handleNumPeopleChange.bind(this)}
-        />
+        <Typography component="h2" variant="h2" gutterBottom>Bill splitter</Typography>
+        <div className="headerFields">
+          <NumberInput
+            label="Total amount"
+            value={this.state.total}
+            onChange={this.handleTotalChange.bind(this)}
+          />
+          <NumberInput
+            label="Number of payers"
+            value={this.state.numPeople}
+            onChange={this.handleNumPeopleChange.bind(this)}
+          />
+        </div>
         {this.payers()}
       </div>
     );
