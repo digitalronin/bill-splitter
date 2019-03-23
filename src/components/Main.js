@@ -24,7 +24,7 @@ class Main extends Component {
     const numPeople = parseInt(people);
 
     if (numPeople) {
-      const contribution = total / numPeople;
+      const contribution = (total / numPeople).toFixed(2);
       const contributions = {};
       let i;
       for (i in Array(numPeople).fill()) {
@@ -51,7 +51,7 @@ class Main extends Component {
         }
       }
 
-      const contribution = (tot - fixedTotal) / unfixedCount;
+      const contribution = ((tot - fixedTotal) / unfixedCount).toFixed(2);
       let contrs = {...contributions};
       for (let i in Array(people).fill()) {
         contrs[i] = (contrs[i] && contrs[i].fixed) ? contrs[i] : { amount: contribution, fixed: false };
