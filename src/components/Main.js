@@ -3,10 +3,14 @@ import NumberInput from './NumberInput';
 import Typography from '@material-ui/core/Typography';
 
 class Main extends Component {
-  state = {
-    total: '',
-    numPeople: '',
-    contributions: { 0: {amount: 0, fixed: false}}
+  state = this.initialState();
+
+  initialState() {
+    return {
+      total: '',
+      numPeople: '',
+      contributions: { 0: {amount: 0, fixed: false}}
+    };
   }
 
   handleTotalChange(event) {
