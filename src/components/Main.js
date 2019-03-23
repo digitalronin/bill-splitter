@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import NumberInput from './NumberInput';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 
 class Main extends Component {
   state = this.initialState();
@@ -76,11 +78,25 @@ class Main extends Component {
     const numPeople = parseInt(this.state.numPeople);
     if (numPeople) {
       const text = (
-        <Typography variant="subtitle1" gutterBottom>
+        <Typography variant="subtitle1" key="text" gutterBottom>
           Override the value for anyone who should pay a different amount.
         </Typography>
       );
-      return [text].concat(Object.keys(this.state.contributions).map((key, i) => {
+
+      const resetButton = (
+        <Button
+          key="reset"
+          variant="contained"
+          type="reset"
+          color="default"
+          onClick={() => this.setState(this.initialState())}
+        >
+          <Icon>autorenew</Icon>
+          &nbsp;Reset
+        </Button>
+      );
+
+      const fields = Object.keys(this.state.contributions).map((key, i) => {
         const value = this.state.contributions[key].amount;
         return (
           <NumberInput
@@ -90,7 +106,9 @@ class Main extends Component {
             onChange={(event) => this.fixContribution(event, key)}
           />
         );
-      }));
+      });
+
+      return Array(text).concat(fields).concat(Array(resetButton));
     } else {
       return null
     }
