@@ -8,6 +8,7 @@ const NumberInput = (props) => {
         label={props.label}
         value={props.value}
         onChange={(event) => props.onChange(event)}
+        variant={props.variant}
       />
     </div>
   );
