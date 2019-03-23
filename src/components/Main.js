@@ -4,7 +4,7 @@ import NumberInput from './NumberInput';
 class Main extends Component {
   state = {
     total: '',
-    numPeople: 1,
+    numPeople: '',
     contributions: { 0: {amount: 0, fixed: false}}
   }
 
