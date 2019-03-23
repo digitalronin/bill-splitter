@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 
 const NumberInput = (props) => {
   return (
-    <div>
+    <div className="userInput">
       <TextField
         label={props.label}
         value={props.value}

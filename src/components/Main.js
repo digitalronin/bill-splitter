@@ -74,14 +74,12 @@ class Main extends Component {
       return Object.keys(this.state.contributions).map((key, i) => {
         const value = this.state.contributions[key].amount;
         return (
-          <div className="payerInputs">
-            <NumberInput
-              key={key}
-              label={`Payer ${i+1}`}
-              value={value}
-              onChange={(event) => this.fixContribution(event, key)}
-            />
-          </div>
+          <NumberInput
+            key={key}
+            label={`Payer ${i+1}`}
+            value={value}
+            onChange={(event) => this.fixContribution(event, key)}
+          />
         );
       });
     } else {
