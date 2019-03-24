@@ -4,18 +4,8 @@
   "description": "Split a bill between a group, when some pay more/less than others",
   "icons": [
     {
-      "src": "/images/favicon.ico",
-      "sizes": "16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "/images/favicon-16x16.png",
-      "sizes": "16x16",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/favicon-32x32.png",
-      "sizes": "32x32",
+      "src": "/images/logo.png",
+      "sizes": "222x222",
       "type": "image/png"
     }
   ],
