@@ -117,7 +117,7 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <Typography component="h2" variant="h2" gutterBottom>Fair Shares.</Typography>
+        <Typography component="h2" variant="h2" gutterBottom>Fair Shares</Typography>
         <div className="headerFields">
           <NumberInput
             label="Total amount"
