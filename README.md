@@ -1,3 +1,10 @@
+# Fair Shares
+
+A simple Progressive Web Application (PWA) made with React.js, to help split the bill at restaurants when some people should pay different amounts to others.
+
+[Hosted on Heroku](https://fair-shares.herokuapp.com)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
