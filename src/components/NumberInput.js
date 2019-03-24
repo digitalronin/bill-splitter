@@ -5,6 +5,7 @@ const NumberInput = (props) => {
   return (
     <div className="userInput">
       <TextField
+        type="number"
         label={props.label}
         value={props.value}
         onChange={(event) => props.onChange(event)}
