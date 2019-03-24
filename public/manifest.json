@@ -1,6 +1,7 @@
 {
-  "short_name": "Bill Splitter",
-  "name": "Split a bill unevenly, between a group",
+  "short_name": "Fair Shares",
+  "name": "Fair Shares - Split the bill",
+  "description": "Split a bill between a group, when some pay more/less than others",
   "icons": [
     {
       "src": "/images/favicon.ico",
@@ -18,7 +19,9 @@
       "type": "image/png"
     }
   ],
-  "start_url": ".",
+  "start_url": "https://fair-shares.herokuapp.com",
+  "scope": "/",
+  "orientation": "portrait",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
