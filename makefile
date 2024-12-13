@@ -1,5 +1,6 @@
 server:
-	yarn start
+	yarn install
+	NODE_OPTIONS=--openssl-legacy-provider yarn start
 
 deploy:
-	git push heroku master
+	fly deploy
